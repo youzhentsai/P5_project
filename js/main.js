@@ -6,7 +6,7 @@ var guessedChar = []
 // var isUnique = true
 
 function getRandom() {
-  return Math.random();
+  return Math.random()
 }
 
 function getQuestion(){
@@ -28,10 +28,10 @@ var generateDOM = function(q){
       }
       document.getElementById('question').appendChild(letterEl)
       document.getElementById('number').innerHTML = allowGuess
-    });
-    // if (win(isGuessed)) {
+    // if (winning(isGuessed)) {
     //   alert('You won!')
     // }
+  })
     if (result(allowGuess)) {
       alert('You ran out of guesses!')
     }
@@ -39,28 +39,32 @@ var generateDOM = function(q){
 // fucntion that reacts to RESET button
 var processGuess = (e)=>{
   guessedChar = []
+  // console.log(guessedChar)
   question = getQuestion()
+  allowGuess = 10
   generateDOM(question)
 }
 
-var result = function result(allowGuess) {
-  return (allowGuess===0)? true:false
+var result = (allowGuess) => {
+  return (allowGuess === 0)? true : false
 }
 
-// var winning = function win(isGuessed){
-//   return(letterEl===isGuessed)? true:false
+// var winning = (isGuessed) => {
+//   return (letterEl === isGuessed)? true : false
 // }
+
+
 // initial guess. generated from random selection
 var question = getQuestion()
 generateDOM(question)
-
 // console.log(question)
 window.addEventListener('keypress', function(e){
   // document the pressed key
   if(question.includes(e.key) && !guessedChar.includes(e.key)){
     guessedChar.push(e.key) // this is an expedient since there's currently no LocalStorage feature
     // console.log(guessedChar)
-  }else{
+  }
+  else{
     allowGuess--
   }
   generateDOM(question)
